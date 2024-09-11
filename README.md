@@ -32,8 +32,8 @@ git clone https://github.com/seu-usuario/seu-repositorio.git
 2. Certifique-se de que você possui um servidor local (como XAMPP, WAMP, ou MAMP) rodando com suporte a PHP e MySQL.
 
 3. Configure o banco de dados MySQL:
-- Crie um banco de dados para o projeto.
-- Importe o arquivo database.sql (caso exista) para criar as tabelas necessárias.
+   - Crie um banco de dados para o projeto.
+   - Importe o arquivo database.sql (caso exista) para criar as tabelas necessárias.
 
 4. Altere as credenciais de conexão ao banco de dados no arquivo conexao.class.php, se necessário.
 
@@ -46,6 +46,6 @@ http://localhost/nome-do-projeto
 - Implementar funcionalidades adicionais como a exclusão de contatos.
 - Melhorar o layout da aplicação para uma melhor experiência do usuário.
 - Adicionar autenticação para proteger o acesso aos contatos.
-- 
+
 ### Contribuições
 Sinta-se à vontade para fazer um fork deste repositório e enviar pull requests com melhorias ou correções. Sugestões são bem-vindas!
