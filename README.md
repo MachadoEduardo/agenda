@@ -35,7 +35,7 @@ git clone https://github.com/seu-usuario/seu-repositorio.git
 - Crie um banco de dados para o projeto.
 - Importe o arquivo database.sql (caso exista) para criar as tabelas necessárias.
 
-4.Altere as credenciais de conexão ao banco de dados no arquivo conexao.class.php, se necessário.
+4. Altere as credenciais de conexão ao banco de dados no arquivo conexao.class.php, se necessário.
 
 5. Acesse a aplicação através do navegador:
 ```
