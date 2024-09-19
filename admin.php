@@ -66,7 +66,7 @@
                     <td><?php echo $item['foto']?></td>
                     <td>
                         <button class="btn btn-warning ml-2"><a href="editarContato.php?id=<?php echo $item['id'];?>">EDITAR</a></button>
-                        <button class="btn btn-danger"><a href="#">EXCLUIR</a></button>
+                        <button class="btn btn-danger"><a href="deletarContato.php?id=<?php echo $item['id'];?>">EXCLUIR</a></button>
                     </td> 
                 </tr>
             </tbody>

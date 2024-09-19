@@ -13,14 +13,16 @@ if (!empty($_POST['id'])) {
     $email = $_POST['email'];
     $foto = $_POST['foto'];
 
-    if ($contato->atualizar($id, $nome, $telefone, $endereco, $dt_nasc, $descricao, $linkedin, $email, $foto)) {
-        header("Location: /agenda/admin.php"); // Redireciona para a página principal após atualizar
-        exit;
+    if (!empty($email)) {
+        if ($contato->atualizar($id, $nome, $telefone, $endereco, $dt_nasc, $descricao, $linkedin, $email, $foto)) {
+            header("Location: /agenda/admin.php"); // Redireciona para a página principal após atualizar
+            exit;
+        } else {
+            echo "Erro ao atualizar o contato!";
+        }
     } else {
-        echo "Erro ao atualizar o contato!";
+        header("Location: /agenda/admin.php"); // Redireciona caso não haja ID
+        exit;
     }
-} else {
-    header("Location: /agenda/admin.php"); // Redireciona caso não haja ID
-    exit;
 }
 ?>

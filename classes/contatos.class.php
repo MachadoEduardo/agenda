@@ -93,32 +93,53 @@ class Contatos
 
     public function atualizar($id, $nome, $telefone, $endereco, $dt_nasc, $descricao, $linkedin, $email, $foto)
     {
-        try {
-            $sql = $this->con->conectar()->prepare("UPDATE contatos SET 
-            nome = :nome, 
-            telefone = :telefone, 
-            endereco = :endereco, 
-            dt_nasc = :dt_nasc, 
-            descricao = :descricao, 
-            linkedin = :linkedin, 
-            email = :email, 
-            foto = :foto 
-            WHERE id = :id");
+        $emailExistente = $this->existeEmail($email);
+        if (count($emailExistente) > 0 && $emailExistente['id'] != $id) {
+            return FALSE;
+        } else {
+            try {
+                $sql = $this->con->conectar()->prepare("UPDATE contatos SET 
+                nome = :nome, 
+                telefone = :telefone, 
+                endereco = :endereco, 
+                dt_nasc = :dt_nasc, 
+                descricao = :descricao, 
+                linkedin = :linkedin, 
+                email = :email, 
+                foto = :foto 
+                WHERE id = :id");
 
-            $sql->bindParam(':id', $id, PDO::PARAM_INT);
-            $sql->bindParam(':nome', $nome, PDO::PARAM_STR);
-            $sql->bindParam(':telefone', $telefone, PDO::PARAM_STR);
-            $sql->bindParam(':endereco', $endereco, PDO::PARAM_STR);
-            $sql->bindParam(':dt_nasc', $dt_nasc, PDO::PARAM_STR);
-            $sql->bindParam(':descricao', $descricao, PDO::PARAM_STR);
-            $sql->bindParam(':linkedin', $linkedin, PDO::PARAM_STR);
-            $sql->bindParam(':email', $email, PDO::PARAM_STR);
-            $sql->bindParam(':foto', $foto, PDO::PARAM_STR);
+                $sql->bindParam(':id', $id, PDO::PARAM_INT);
+                $sql->bindParam(':nome', $nome, PDO::PARAM_STR);
+                $sql->bindParam(':telefone', $telefone, PDO::PARAM_STR);
+                $sql->bindParam(':endereco', $endereco, PDO::PARAM_STR);
+                $sql->bindParam(':dt_nasc', $dt_nasc, PDO::PARAM_STR);
+                $sql->bindParam(':descricao', $descricao, PDO::PARAM_STR);
+                $sql->bindParam(':linkedin', $linkedin, PDO::PARAM_STR);
+                $sql->bindParam(':email', $email, PDO::PARAM_STR);
+                $sql->bindParam(':foto', $foto, PDO::PARAM_STR);
 
-            $sql->execute();
-            return true;
-        } catch (PDOException $ex) {
-            return 'ERRO: ' . $ex->getMessage();
+                $sql->execute();
+                return true;
+            } catch (PDOException $ex) {
+                return 'ERRO: ' . $ex->getMessage();
+            }
         }
     }
+
+    public function deletar() {
+        if (isset($_GET['id'])) {
+            $id = intval($_GET['id']);
+            
+            try {
+                $sql = $this->con->conectar()->prepare("DELETE FROM contatos WHERE id = :id");
+                $sql->bindParam(':id', $id, PDO::PARAM_INT);
+                $sql->execute();
+        
+                header('Location: admin.php');
+            } catch (PDOException $ex) {
+                echo 'ERRO: ' . $ex->getMessage();
+            }
+        }
+    }   
 }
